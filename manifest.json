@@ -1,0 +1,16 @@
+{
+    "name": "Tadarus - Pengagihan Halaman Al-Quran",
+    "short_name": "Tadarus",
+    "description": "Sistem pengagihan halaman tadarus Al-Quran mengikut kehadiran.",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#0e1a12",
+    "theme_color": "#1a3d2b",
+    "icons": [
+        {
+            "src": "assets/quran.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

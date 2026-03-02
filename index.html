@@ -4,7 +4,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pengagihan Halaman Tadarus Al-Quran</title>
+  <title>Tadarus - Pengagihan Halaman Al-Quran</title>
+  <meta name="description"
+    content="Aplikasi web percuma untuk memudahkan pengagihan halaman tadarus Al-Quran secara adil dan sistematik mengikut bilangan kumpulan dan kehadiran ahli.">
+  <meta name="keywords"
+    content="tadarus, al-quran, pengagihan muka surat, islam, ramadan, kumpulan tadarus, calculator quran">
+  <meta name="author" content="SyahmieAmirullah">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tadarus.nasrm.com/">
+  <meta property="og:title" content="Tadarus - Pengagihan Halaman Al-Quran">
+  <meta property="og:description"
+    content="Mudahkan pengagihan halaman tadarus Al-Quran anda dengan sistem pengagihan pintar mengikut kehadiran.">
+  <meta property="og:image" content="assets/og-image.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://tadarus.nasrm.com/">
+  <meta property="twitter:title" content="Tadarus - Pengagihan Halaman Al-Quran">
+  <meta property="twitter:description"
+    content="Mudahkan pengagihan halaman tadarus Al-Quran anda dengan sistem pengagihan pintar mengikut kehadiran.">
+  <meta property="twitter:image" content="assets/og-image.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/quran.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0e1a12">
+
   <link
     href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;600;700&display=swap"
     rel="stylesheet">
@@ -31,6 +58,8 @@
       color: var(--text);
       font-family: 'Raleway', sans-serif;
       min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
     body::before {
@@ -47,9 +76,18 @@
     .container {
       max-width: 960px;
       margin: 0 auto;
-      padding: 40px 20px 80px;
+      padding: 40px 20px 20px;
       position: relative;
       z-index: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 24px 16px 20px;
+      }
     }
 
     header {
@@ -109,12 +147,18 @@
     }
 
     .card {
-      background: rgba(22, 33, 24, 0.85);
-      border: 1px solid rgba(201, 168, 76, 0.2);
-      border-radius: 12px;
+      background: rgba(22, 33, 24, 0.8);
+      border: 1px solid rgba(201, 168, 76, 0.15);
+      border-radius: 16px;
       padding: 26px 30px;
-      margin-bottom: 18px;
-      backdrop-filter: blur(10px);
+      margin-bottom: 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(201, 168, 76, 0.3);
     }
 
     .card-title {
@@ -198,9 +242,15 @@
 
     .group-setup-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 10px;
-      margin-bottom: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 480px) {
+      .group-setup-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .group-setup-item {
@@ -288,8 +338,12 @@
     }
 
     .attend-stats {
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       color: var(--muted);
+      background: rgba(201, 168, 76, 0.05);
+      padding: 6px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(201, 168, 76, 0.1);
     }
 
     .attend-stats b {
@@ -318,18 +372,22 @@
     .attend-chip {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       background: rgba(14, 26, 18, 0.7);
       border: 1px solid rgba(201, 168, 76, 0.2);
-      border-radius: 30px;
-      padding: 6px 12px 6px 8px;
+      border-radius: 40px;
+      padding: 8px 16px 8px 10px;
       cursor: pointer;
-      transition: all 0.18s;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       user-select: none;
+      min-height: 44px;
+      /* Better touch target */
     }
 
     .attend-chip:hover {
-      border-color: rgba(201, 168, 76, 0.5);
+      border-color: var(--gold);
+      background: rgba(201, 168, 76, 0.1);
+      transform: translateY(-2px);
     }
 
     .attend-chip.present {
@@ -434,23 +492,31 @@
 
     .group-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    @media (max-width: 480px) {
+      .group-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .group-card {
       background: rgba(14, 26, 18, 0.7);
       border: 1px solid rgba(201, 168, 76, 0.15);
-      border-radius: 10px;
-      padding: 18px 20px;
+      border-radius: 16px;
+      padding: 22px;
       position: relative;
       overflow: hidden;
-      transition: border-color 0.2s, transform 0.2s;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
     .group-card:hover {
-      border-color: rgba(201, 168, 76, 0.4);
-      transform: translateY(-2px);
+      border-color: var(--gold);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
     }
 
     .group-card::before {
@@ -591,22 +657,74 @@
       background: rgba(201, 168, 76, 0.08);
     }
 
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card,
+    .group-card,
+    .attend-chip {
+      animation: fadeInUp 0.5s ease-out forwards;
+    }
+
     @media (max-width: 560px) {
       .step-row {
         flex-direction: column;
+        align-items: stretch;
       }
 
       .btn-sm {
         width: 100%;
         text-align: center;
+        padding: 14px;
       }
 
       .card {
-        padding: 20px 16px;
+        padding: 20px 18px;
+        border-radius: 12px;
       }
 
       .arabic-header {
-        font-size: 1.7rem;
+        font-size: 1.8rem;
+      }
+
+      header h1 {
+        font-size: 1.2rem;
+      }
+
+      .attend-header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .attend-stats {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .result-header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .result-summary {
+        text-align: center;
+        width: 100%;
+      }
+
+      .btn-print {
+        width: 100%;
+        text-align: center;
+        padding: 12px;
       }
     }
 
@@ -628,7 +746,8 @@
 
       .btn,
       .btn-print,
-      .btn-distribute {
+      .btn-distribute,
+      footer {
         display: none !important;
       }
 
@@ -682,6 +801,131 @@
         color: #a00;
       }
     }
+
+    footer {
+      text-align: center;
+      margin-top: auto;
+      padding-top: 60px;
+      padding-bottom: 20px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+
+    footer b {
+      color: var(--gold-light);
+      font-weight: 700;
+    }
+
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: all 0.2s;
+      border-bottom: 1px dashed rgba(201, 168, 76, 0.3);
+      padding-bottom: 2px;
+    }
+
+    footer a:hover {
+      color: var(--gold-light);
+      border-bottom-color: var(--gold-light);
+      text-shadow: 0 0 10px rgba(201, 168, 76, 0.3);
+    }
+
+    /* MODAL STYLES */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(14, 26, 18, 0.85);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      background: rgba(22, 33, 24, 0.95);
+      border: 1px solid var(--gold);
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      transform: scale(0.9);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-overlay.active .modal-box {
+      transform: scale(1);
+    }
+
+    .modal-icon {
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .modal-text {
+      color: var(--cream);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .modal-btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .modal-btn {
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-family: 'Raleway', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      flex: 1;
+    }
+
+    .modal-btn-confirm {
+      background: linear-gradient(135deg, var(--gold), #8a6820);
+      color: var(--dark);
+      border: none;
+    }
+
+    .modal-btn-cancel {
+      background: transparent;
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      color: var(--gold);
+    }
+
+    .modal-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-btn-confirm:hover {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    }
+
+    .modal-btn-cancel:hover {
+      background: rgba(201, 168, 76, 0.1);
+    }
   </style>
 </head>
 
@@ -706,14 +950,8 @@
           <label>Halaman Mula</label>
           <input type="number" id="startPage" value="1" min="1" max="604">
         </div>
-        <div class="form-group">
-          <label>Bilangan Kumpulan</label>
-          <input type="number" id="numGroups" value="7" min="1" max="50">
-        </div>
-        <div class="form-group">
-          <label>Ahli Lalai / Kumpulan</label>
-          <input type="number" id="defaultMembers" value="4" min="1" max="30">
-        </div>
+        <button class="btn-sm" style="font-size:0.8rem;background:rgba(14,26,18,0.8);border-color:rgba(201,168,76,0.3)"
+          onclick="resetForm()">Muat Semula</button>
         <button class="btn-sm" onclick="generateSetup()">Tetapkan &rarr;</button>
       </div>
     </div>
@@ -759,13 +997,35 @@
       </div>
       <div class="group-grid" id="groupGrid"></div>
     </div>
+
+    <footer>
+      <div class="divider">
+        <span class="divider-line"></span>
+        <span class="divider-diamond"></span>
+        <span class="divider-line right"></span>
+      </div>
+      <p>Dev by <b>SyahmieAmirullah</b> &nbsp;&middot;&nbsp; Contribute <a
+          href="https://github.com/SyahmieAmirullah/tadarrus" target="_blank">here</a></p>
+    </footer>
+  </div>
+
+  <!-- Custom Modal -->
+  <div id="customModal" class="modal-overlay">
+    <div class="modal-box">
+      <span class="modal-icon" id="modalIcon">✧</span>
+      <div class="modal-text" id="modalText">Mesej di sini...</div>
+      <div class="modal-btns">
+        <button id="modalCancel" class="modal-btn modal-btn-cancel">Batal</button>
+        <button id="modalConfirm" class="modal-btn modal-btn-confirm">Ya, Pasti</button>
+      </div>
+    </div>
   </div>
 
   <script>
     var GROUPS = []; // Updated via fetch later
-    
+
     // Fetch group data on initialization
-    window.onload = async function() {
+    window.onload = async function () {
       try {
         const response = await fetch('groups.json');
         if (response.ok) {
@@ -795,19 +1055,89 @@
     var groupData = []; // [{name, page, present, groupIdx}]
     var groupSizes = [];
 
-    function generateSetup() {
+    // Custom Modal System
+    function showModal(options) {
+      const modal = document.getElementById('customModal');
+      const text = document.getElementById('modalText');
+      const icon = document.getElementById('modalIcon');
+      const confirmBtn = document.getElementById('modalConfirm');
+      const cancelBtn = document.getElementById('modalCancel');
+
+      text.innerText = options.text || 'Adakah anda pasti?';
+      icon.innerText = options.icon || '✧';
+      confirmBtn.innerText = options.confirmText || 'Ya';
+
+      if (options.type === 'alert') {
+        cancelBtn.style.display = 'none';
+        confirmBtn.style.flex = 'none';
+        confirmBtn.style.width = '100%';
+      } else {
+        cancelBtn.style.display = 'block';
+        cancelBtn.innerText = options.cancelText || 'Batal';
+        confirmBtn.style.flex = '1';
+      }
+
+      modal.classList.add('active');
+
+      return new Promise((resolve) => {
+        const handleConfirm = () => {
+          cleanup();
+          resolve(true);
+        };
+        const handleCancel = () => {
+          cleanup();
+          resolve(false);
+        };
+        const cleanup = () => {
+          modal.classList.remove('active');
+          confirmBtn.removeEventListener('click', handleConfirm);
+          cancelBtn.removeEventListener('click', handleCancel);
+        };
+
+        confirmBtn.addEventListener('click', handleConfirm);
+        cancelBtn.addEventListener('click', handleCancel);
+      });
+    }
+
+    async function resetForm() {
+      const confirmed = await showModal({
+        text: 'Adakah anda pasti untuk muat semula? Semua data input akan dikosongkan.',
+        icon: '↺',
+        confirmText: 'Sahkan',
+        cancelText: 'Batal'
+      });
+      if (confirmed) {
+        window.location.reload();
+      }
+    }
+
+    async function generateSetup() {
       var start = parseInt(document.getElementById('startPage').value);
-      var n = parseInt(document.getElementById('numGroups').value);
-      var def = parseInt(document.getElementById('defaultMembers').value);
-      if (!start || !n || !def) { alert('Sila isi semua medan.'); return; }
+      if (!start) {
+        await showModal({
+          text: 'Sila isi halaman mula.',
+          icon: '✍',
+          type: 'alert',
+          confirmText: 'Faham'
+        });
+        return;
+      }
+
+      // Use GROUPS from JSON, fallback to default 7 if empty
+      var n = GROUPS.length > 0 ? GROUPS.length : 7;
       numGroupsVal = n;
+
       var grid = document.getElementById('groupSetupGrid');
       grid.innerHTML = '';
       for (var g = 1; g <= n; g++) {
+        var groupIdx = g - 1;
+        // Use member count from JSON if available, otherwise fallback to 4
+        var membersInGroup = (GROUPS[groupIdx] && GROUPS[groupIdx].length) ? GROUPS[groupIdx].length : 4;
+
         var item = document.createElement('div');
         item.className = 'group-setup-item';
         item.innerHTML = '<label>Kumpulan ' + g + '</label>'
-          + '<input type="number" id="grp_' + g + '" value="' + def + '" min="1" max="30" oninput="updatePreview()">';
+          + '<input type="number" id="grp_' + g + '" value="' + membersInGroup + '" min="1" max="30" oninput="updatePreview()">';
         grid.appendChild(item);
       }
       document.getElementById('groupSetup').style.display = 'block';
@@ -832,17 +1162,31 @@
       }
     }
 
-    function buildAttendance() {
+    async function buildAttendance() {
       var start = parseInt(document.getElementById('startPage').value);
       groupSizes = [];
       var total = 0;
       for (var g = 1; g <= numGroupsVal; g++) {
         var v = parseInt(document.getElementById('grp_' + g).value) || 0;
-        if (v < 1) { alert('Kumpulan ' + g + ' perlu sekurang-kurangnya 1 ahli.'); return; }
+        if (v < 1) {
+          await showModal({
+            text: 'Kumpulan ' + g + ' perlu sekurang-kurangnya 1 ahli.',
+            icon: '👥',
+            type: 'alert'
+          });
+          return;
+        }
         groupSizes.push(v);
         total += v;
       }
-      if (start + total - 1 > 604) { alert('Melebihi halaman 604!'); return; }
+      if (start + total - 1 > 604) {
+        await showModal({
+          text: 'Melebihi halaman 604!',
+          icon: '⚠️',
+          type: 'alert'
+        });
+        return;
+      }
 
       // Build member list with assigned pages
       groupIndexMap = {}; // reset mapping
@@ -885,7 +1229,7 @@
       chip.id = 'chip_' + idx;
       chip.innerHTML = '<span class="tick"></span>'
         + '<span class="name-lbl">' + groupData[idx].name + '</span>'
-        + '<span class="page-badge">Hlm ' + groupData[idx].page + '</span>';
+        + '<span class="page-badge">M/s ' + groupData[idx].page + '</span>';
       chip.addEventListener('click', function () { toggleAttend(idx); });
       return chip;
     }
@@ -968,7 +1312,7 @@
         });
 
         var rangeText = gStart !== null
-          ? 'Hlm <span>' + gStart + '</span> &ndash; <span>' + gEnd + '</span>'
+          ? 'M/s <span>' + gStart + '</span> &ndash; <span>' + gEnd + '</span>'
           : '<span style="color:var(--muted);font-size:1rem">Tiada ahli hadir</span>';
 
         var card = document.createElement('div');
@@ -982,14 +1326,14 @@
       }
 
       document.getElementById('summaryBadge').textContent =
-        'Hlm ' + start + '\u2013' + (currentPage - 1) + ' \u00b7 ' + numGroupsVal + ' kumpulan \u00b7 ' + presentTotal + '/' + totalPages + ' hadir';
+        'M/s ' + start + '\u2013' + (currentPage - 1) + ' \u00b7 ' + numGroupsVal + ' kumpulan \u00b7 ' + presentTotal + '/' + totalPages + ' hadir';
 
       var results = document.getElementById('results');
       results.style.display = 'block';
       results.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    ['startPage', 'numGroups', 'defaultMembers'].forEach(function (id) {
+    ['startPage'].forEach(function (id) {
       document.getElementById(id).addEventListener('keydown', function (e) { if (e.key === 'Enter') generateSetup(); });
     });
   </script>
