@@ -235,6 +235,11 @@
       transform: translateY(-1px);
     }
 
+    .btn-outline {
+      background: rgba(14, 26, 18, 0.8);
+      border-color: rgba(201, 168, 76, 0.3);
+    }
+
     /* STEP 2 */
     #groupSetup {
       display: none;
@@ -334,6 +339,11 @@
       align-items: center;
       margin-bottom: 14px;
       flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .attend-actions {
+      display: flex;
       gap: 8px;
     }
 
@@ -708,7 +718,12 @@
 
       .attend-stats {
         text-align: center;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
+      }
+
+      .attend-actions {
+        flex-direction: column;
+        align-items: stretch;
       }
 
       .result-header {
@@ -950,8 +965,7 @@
           <label>Halaman Mula</label>
           <input type="number" id="startPage" value="1" min="1" max="604">
         </div>
-        <button class="btn-sm" style="font-size:0.8rem;background:rgba(14,26,18,0.8);border-color:rgba(201,168,76,0.3)"
-          onclick="resetForm()">Muat Semula</button>
+        <button class="btn-sm btn-outline" onclick="resetForm()">Muat Semula</button>
         <button class="btn-sm" onclick="generateSetup()">Tetapkan &rarr;</button>
       </div>
     </div>
@@ -970,12 +984,10 @@
       <div class="attend-header">
         <div class="attend-stats">Hadir: <b id="presentCount">0</b> / <b id="totalCount">0</b> &nbsp;|&nbsp; Tidak
           hadir: <b id="absentCount">0</b></div>
-        <div style="display:flex;gap:8px">
-          <button class="btn-sm" style="padding:7px 14px;font-size:0.7rem" onclick="markAll(true)">&#10003; Semua
+        <div class="attend-actions">
+          <button class="btn-sm" onclick="markAll(true)">&#10003; Semua
             Hadir</button>
-          <button class="btn-sm"
-            style="padding:7px 14px;font-size:0.7rem;background:rgba(14,26,18,0.8);border-color:rgba(201,168,76,0.3)"
-            onclick="markAll(false)">&#10005; Kosongkan</button>
+          <button class="btn-sm btn-outline" onclick="markAll(false)">&#10005; Kosongkan</button>
         </div>
       </div>
       <div id="attendanceGrid"></div>
